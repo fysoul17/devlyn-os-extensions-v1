@@ -1,0 +1,12 @@
+{
+  "name": "devlyn-os-extensions",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "sdk"
+  ],
+  "scripts": {
+    "validate": "node scripts/registry.mjs validate",
+    "test": "node --test sdk/test/*.test.mjs scripts/*.test.mjs"
+  }
+}

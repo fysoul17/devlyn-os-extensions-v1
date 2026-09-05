@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "publishers": [
+    {
+      "id": "devlyn",
+      "githubUserId": 7436491,
+      "githubLogin": "fysoul17"
+    }
+  ],
+  "releases": [
+    {
+      "id": "devlyn.welcome",
+      "version": "0.1.0",
+      "bundleUrl": "https://raw.githubusercontent.com/fysoul17/devlyn-os-extensions-v1/main/bundles/devlyn.welcome-0.1.0.devlyn-plugin",
+      "sha256": "3ceb48ad6809226cdd474dfa96e75a060d34360905a759fd90dc7db134f0f0b7"
+    }
+  ]
+}

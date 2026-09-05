@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bundle.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "manifest",
+    "files"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "manifest": {
+      "$ref": "manifest.schema.json"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "content"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240,
+            "pattern": "^[\\x20-\\x7e]+$",
+            "description": "Use devlyn-plugin validate for portable path, collision and UTF-8 byte-limit checks."
+          },
+          "content": {
+            "type": "string",
+            "description": "UTF-8 text, at most 1 MiB, no NUL or lone surrogate."
+          }
+        }
+      },
+      "minItems": 1,
+      "maxItems": 256
+    }
+  }
+}

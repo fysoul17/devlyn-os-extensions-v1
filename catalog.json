@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "plugins": [
+    {
+      "manifest": {
+        "schemaVersion": 1,
+        "id": "devlyn.welcome",
+        "name": "Welcome Writer",
+        "version": "0.1.0",
+        "description": "Create a short welcome note in the selected workspace.",
+        "license": "MIT",
+        "engines": ["claude", "codex", "grok", "omp"],
+        "commands": [
+          {
+            "id": "write-note",
+            "title": "Write a welcome note",
+            "description": "Create devlyn-welcome.md using your local agent account.",
+            "instructions": "skills/write-note/SKILL.md",
+            "inputs": [
+              {
+                "id": "audience",
+                "label": "Who is the note for?",
+                "type": "text",
+                "required": true
+              }
+            ]
+          }
+        ],
+        "prerequisites": []
+      },
+      "bundleUrl": "https://raw.githubusercontent.com/fysoul17/devlyn-os-extensions-v1/main/bundles/devlyn.welcome-0.1.0.devlyn-plugin",
+      "sha256": "3ceb48ad6809226cdd474dfa96e75a060d34360905a759fd90dc7db134f0f0b7"
+    }
+  ],
+  "revoked": []
+}

@@ -1,0 +1,366 @@
+{
+  "cases": [
+    {
+      "name": "public bundle is valid",
+      "target": "bundle",
+      "accepted": true,
+      "patches": []
+    },
+    {
+      "name": "unknown manifest field",
+      "target": "bundle",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/manifest/installHook",
+          "value": "execute"
+        }
+      ]
+    },
+    {
+      "name": "null manifest",
+      "target": "bundle",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/manifest",
+          "value": null
+        }
+      ]
+    },
+    {
+      "name": "null required flag",
+      "target": "bundle",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/manifest/commands/0/inputs/0/required",
+          "value": null
+        }
+      ]
+    },
+    {
+      "name": "80 UTF16 name units",
+      "target": "bundle",
+      "accepted": true,
+      "patches": [
+        {
+          "pointer": "/manifest/name",
+          "value": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀"
+        }
+      ]
+    },
+    {
+      "name": "82 UTF16 name units",
+      "target": "bundle",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/manifest/name",
+          "value": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀"
+        }
+      ]
+    },
+    {
+      "name": "BOM-only display name",
+      "target": "bundle",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/manifest/name",
+          "value": "﻿"
+        }
+      ]
+    },
+    {
+      "name": "BOM-only instructions",
+      "target": "bundle",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/files/0/content",
+          "value": "﻿"
+        }
+      ]
+    },
+    {
+      "name": "C1 display control",
+      "target": "bundle",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/manifest/name",
+          "value": "name"
+        }
+      ]
+    },
+    {
+      "name": "largest SemVer core integer",
+      "target": "bundle",
+      "accepted": true,
+      "patches": [
+        {
+          "pointer": "/manifest/version",
+          "value": "18446744073709551615.0.0"
+        }
+      ]
+    },
+    {
+      "name": "SemVer core overflow",
+      "target": "bundle",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/manifest/version",
+          "value": "18446744073709551616.0.0"
+        }
+      ]
+    },
+    {
+      "name": "SemVer prerelease leading zero",
+      "target": "bundle",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/manifest/version",
+          "value": "1.0.0-01"
+        }
+      ]
+    },
+    {
+      "name": "SemVer build metadata",
+      "target": "bundle",
+      "accepted": true,
+      "patches": [
+        {
+          "pointer": "/manifest/version",
+          "value": "1.0.0-beta.1+build.09"
+        }
+      ]
+    },
+    {
+      "name": "duplicate engine",
+      "target": "bundle",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/manifest/engines",
+          "value": ["claude", "claude"]
+        }
+      ]
+    },
+    {
+      "name": "URL raw newline",
+      "target": "bundle",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/manifest/prerequisites",
+          "value": [
+            {
+              "command": "node",
+              "name": "Node.js",
+              "url": "https://example.com/a\nb"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "URL raw C1 control",
+      "target": "bundle",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/manifest/prerequisites",
+          "value": [
+            {
+              "command": "node",
+              "name": "Node.js",
+              "url": "https://example.com/ab"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "URL empty fragment",
+      "target": "bundle",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/manifest/prerequisites",
+          "value": [
+            {
+              "command": "node",
+              "name": "Node.js",
+              "url": "https://example.com/setup#"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "URL nonASCII length uses UTF16",
+      "target": "bundle",
+      "accepted": true,
+      "patches": [
+        {
+          "pointer": "/manifest/prerequisites",
+          "value": [
+            {
+              "command": "node",
+              "name": "Node.js",
+              "url": "https://example.com/가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "URL normal HTTPS default port",
+      "target": "bundle",
+      "accepted": true,
+      "patches": [
+        {
+          "pointer": "/manifest/prerequisites",
+          "value": [
+            {
+              "command": "node",
+              "name": "Node.js",
+              "url": "https://example.com:443/setup"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "path parent escape",
+      "target": "bundle",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/files/0/path",
+          "value": "../secret"
+        }
+      ]
+    },
+    {
+      "name": "Windows reserved file",
+      "target": "bundle",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/files/0/path",
+          "value": "skills/NUL.txt"
+        }
+      ]
+    },
+    {
+      "name": "instructions case mismatch",
+      "target": "bundle",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/manifest/commands/0/instructions",
+          "value": "skills/write-note/skill.md"
+        }
+      ]
+    },
+    {
+      "name": "public catalog is valid",
+      "target": "catalog",
+      "accepted": true,
+      "patches": []
+    },
+    {
+      "name": "catalog artifact credentials",
+      "target": "catalog",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/plugins/0/bundleUrl",
+          "value": "https://user:secret@github.com/asset"
+        }
+      ]
+    },
+    {
+      "name": "catalog artifact other host",
+      "target": "catalog",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/plugins/0/bundleUrl",
+          "value": "https://example.com/asset"
+        }
+      ]
+    },
+    {
+      "name": "catalog artifact raw backslash",
+      "target": "catalog",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/plugins/0/bundleUrl",
+          "value": "https://github.com/a\\b"
+        }
+      ]
+    },
+    {
+      "name": "catalog artifact empty fragment",
+      "target": "catalog",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/plugins/0/bundleUrl",
+          "value": "https://github.com/asset#"
+        }
+      ]
+    },
+    {
+      "name": "catalog digest uppercase",
+      "target": "catalog",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/plugins/0/sha256",
+          "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        }
+      ]
+    },
+    {
+      "name": "catalog active release revoked",
+      "target": "catalog",
+      "accepted": false,
+      "patches": [
+        {
+          "pointer": "/revoked",
+          "value": [
+            {
+              "id": "devlyn.welcome",
+              "version": "0.1.0",
+              "reason": "Unsafe"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "catalog historical revocation",
+      "target": "catalog",
+      "accepted": true,
+      "patches": [
+        {
+          "pointer": "/revoked",
+          "value": [
+            {
+              "id": "devlyn.welcome",
+              "version": "0.0.1",
+              "reason": "Unsafe"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

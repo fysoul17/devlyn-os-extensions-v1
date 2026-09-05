@@ -1,0 +1,31 @@
+name: Validate SDK and registry
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm test
+      - run: npm run validate
+      - name: Read trusted PR base
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: .registry-base
+          persist-credentials: false
+      - name: Preserve published history
+        if: github.event_name == 'pull_request'
+        run: node scripts/registry.mjs validate --base .registry-base
+      - run: npm pack --workspace sdk --dry-run --ignore-scripts

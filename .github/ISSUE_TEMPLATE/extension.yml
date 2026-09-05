@@ -1,0 +1,14 @@
+name: Submit an extension
+description: Request review of a free extension or new version.
+title: 'Submit publisher.product@version'
+body:
+  - type: markdown
+    attributes:
+      value: Run `devlyn-plugin submit your-bundle.devlyn-plugin --url YOUR_HTTPS_RELEASE_URL` to generate an issue with exact identity and digest. This form is for questions when that flow is unavailable. Never attach secrets or private Devlyn source.
+  - type: textarea
+    id: release
+    attributes:
+      label: Release and testing details
+      description: Include the package URL, publisher.product ID, version, SHA256, purpose and how you tested it in Devlyn.
+    validations:
+      required: true

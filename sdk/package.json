@@ -1,0 +1,33 @@
+{
+  "name": "devlyn-plugin",
+  "version": "0.1.0",
+  "description": "Build and submit extensions for Devlyn OS without its proprietary source.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "devlyn-plugin": "./bin.mjs"
+  },
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.mjs"
+    },
+    "./schema/*": "./schema/*"
+  },
+  "files": [
+    "bin.mjs",
+    "cli.mjs",
+    "index.mjs",
+    "index.d.ts",
+    "schema",
+    "README.md",
+    "AGENTS.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  }
+}

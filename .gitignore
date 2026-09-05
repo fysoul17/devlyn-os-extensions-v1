@@ -1,0 +1,4 @@
+node_modules/
+*.tgz
+.registry.lock
+*.tmp

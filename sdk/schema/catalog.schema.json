@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "catalog.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "plugins",
+    "revoked"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "plugins": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "manifest",
+          "bundleUrl",
+          "sha256"
+        ],
+        "properties": {
+          "manifest": {
+            "$ref": "manifest.schema.json"
+          },
+          "bundleUrl": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048,
+            "pattern": "^https://",
+            "format": "uri",
+            "description": "GitHub artifact infrastructure only; validate enforces host and URL restrictions."
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      },
+      "minItems": 0,
+      "maxItems": 256
+    },
+    "revoked": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "version",
+          "reason"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,63}\\.[a-z][a-z0-9-]{0,63}$"
+          },
+          "version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[^\\u0000-\\u001f\\u007f-\u009f]*$",
+            "description": "SemVer 2.0.0, no v prefix; validate enforces semantic version grammar."
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000,
+            "pattern": "^[^\\u0000-\\u001f\\u007f-\u009f]*$"
+          }
+        }
+      },
+      "minItems": 0,
+      "maxItems": 1024
+    }
+  }
+}
