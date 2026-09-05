@@ -26,7 +26,7 @@ The generic Welcome Writer example creates `devlyn-welcome.md` in the selected w
 
 ## Operator release process
 
-Initial setup must publish this separate `fysoul17/devlyn-os-extensions-v1` repository including `sdk/` and `bundles/`, upload the SDK tarball produced from that reviewed source under tag `sdk-v0.1.0`, and enable the protected `main` branch. Until those steps happen, URLs in this prepared checkout are release destinations, not evidence of a live service. Keep `catalog.json` publicly readable at `https://raw.githubusercontent.com/fysoul17/devlyn-os-extensions-v1/main/catalog.json`. npm registry publication is optional later.
+The [SDK 0.1.0 release](https://github.com/fysoul17/devlyn-os-extensions-v1/releases/tag/sdk-v0.1.0) and [catalog](https://raw.githubusercontent.com/fysoul17/devlyn-os-extensions-v1/main/catalog.json) are publicly available. SDK releases use GitHub release immutability: stage and verify every asset in a draft before publishing, then use a new version for changes. The protected `main` branch requires the registry CI check and a pull request, including for administrators. npm registry publication is optional later.
 
 ```sh
 npm ci --ignore-scripts
